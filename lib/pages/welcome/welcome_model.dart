@@ -34,24 +34,31 @@ class WelcomeModel extends FlutterFlowModel<WelcomeWidget> {
   AudioPlayer? soundPlayer3;
   AudioPlayer? soundPlayer4;
   AudioPlayer? soundPlayer5;
+  AudioPlayer? soundPlayer6;
+  AudioPlayer? soundPlayer7;
   // Stores action output result for [Custom Action - numericAction] action in Welcome widget.
   String? digitInfo;
   // Stores action output result for [Custom Action - numericAction] action in Welcome widget.
   String? digitIntro;
-  AudioPlayer? soundPlayer6;
-  AudioPlayer? soundPlayer7;
   AudioPlayer? soundPlayer8;
   AudioPlayer? soundPlayer9;
-  // Stores action output result for [Custom Action - retrieveRandomSentence] action in Column widget.
-  String? shortstory;
   AudioPlayer? soundPlayer10;
-  // Stores action output result for [Custom Action - numericAction] action in Column widget.
-  String? fact1;
   AudioPlayer? soundPlayer11;
   AudioPlayer? soundPlayer12;
+  AudioPlayer? soundPlayer13;
+  // Stores action output result for [Custom Action - retrieveRandomSentence] action in Column widget.
+  String? shortstory;
+  AudioPlayer? soundPlayer14;
+  AudioPlayer? soundPlayer15;
+  AudioPlayer? soundPlayer16;
+  // Stores action output result for [Custom Action - numericAction] action in Column widget.
+  String? fact1;
+  AudioPlayer? soundPlayer17;
+  AudioPlayer? soundPlayer18;
+  AudioPlayer? soundPlayer19;
   // Stores action output result for [Custom Action - retrieveRandomSentence] action in Column widget.
   String? rhyme;
-  AudioPlayer? soundPlayer13;
+  AudioPlayer? soundPlayer20;
   // Stores action output result for [Custom Action - numericAction] action in Column widget.
   String? fact2;
   // State field(s) for Timer1 widget.

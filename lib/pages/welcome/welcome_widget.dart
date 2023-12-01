@@ -236,28 +236,21 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
               .setAsset('assets/audios/Short_story_&_rhyme.mp3')
               .then((_) => _model.soundPlayer3!.play());
 
+          await Future.delayed(const Duration(milliseconds: 500));
           _model.timer1Controller.onStartTimer();
-          _model.timer2Controller.onStartTimer();
-          await Future.delayed(const Duration(milliseconds: 1000));
-          while (_model.timer1Milliseconds < 10000) {
-            await actions.tts(
-              widget.country,
-              (String var1) {
-                return var1[1];
-              }(_model.timer2Value),
-              widget.speed,
-              widget.repCount,
-              widget.voicegender!,
-            );
+          _model.soundPlayer4 ??= AudioPlayer();
+          if (_model.soundPlayer4!.playing) {
+            await _model.soundPlayer4!.stop();
           }
+          _model.soundPlayer4!.setVolume(1.0);
+          await _model.soundPlayer4!
+              .setAsset('assets/audios/female_countdown_timer.mp3')
+              .then((_) => _model.soundPlayer4!.play());
+
+          _model.timer1Controller.timer.setPresetTime(mSec: 11000, add: false);
+          _model.timer1Controller.onResetTimer();
+
           if (_model.timer1Milliseconds > 10000) {
-            _model.timer1Controller.onStopTimer();
-            _model.timer1Controller.timer
-                .setPresetTime(mSec: 10000, add: false);
-            _model.timer1Controller.onResetTimer();
-
-            _model.timer2Controller.onResetTimer();
-
             await actions.tts(
               widget.country,
               'If you want to hear a rhyme about  the letter, tap the screen within the next ten seconds after this sound',
@@ -265,41 +258,37 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
               widget.repCount,
               widget.voicegender!,
             );
-            _model.soundPlayer4 ??= AudioPlayer();
-            if (_model.soundPlayer4!.playing) {
-              await _model.soundPlayer4!.stop();
+            _model.soundPlayer5 ??= AudioPlayer();
+            if (_model.soundPlayer5!.playing) {
+              await _model.soundPlayer5!.stop();
             }
-            _model.soundPlayer4!.setVolume(1.0);
-            await _model.soundPlayer4!
+            _model.soundPlayer5!.setVolume(1.0);
+            await _model.soundPlayer5!
                 .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                .then((_) => _model.soundPlayer4!.play());
+                .then((_) => _model.soundPlayer5!.play());
 
-            _model.timer1Controller.onStartTimer();
-            _model.timer2Controller.onStartTimer();
-            await Future.delayed(const Duration(milliseconds: 1000));
-            while (_model.timer1Milliseconds < 20000) {
-              await actions.tts(
-                widget.country,
-                (String var1) {
-                  return var1[1];
-                }(_model.timer2Value),
-                widget.speed,
-                widget.repCount,
-                widget.voicegender!,
-              );
+            _model.soundPlayer6 ??= AudioPlayer();
+            if (_model.soundPlayer6!.playing) {
+              await _model.soundPlayer6!.stop();
             }
-            if (_model.timer1Milliseconds > 20000) {
-              _model.timer1Controller.onStopTimer();
-              _model.timer1Controller.onResetTimer();
+            _model.soundPlayer6!.setVolume(1.0);
+            await _model.soundPlayer6!
+                .setAsset('assets/audios/female_countdown_timer.mp3')
+                .then((_) => _model.soundPlayer6!.play());
 
-              _model.soundPlayer5 ??= AudioPlayer();
-              if (_model.soundPlayer5!.playing) {
-                await _model.soundPlayer5!.stop();
+            _model.timer1Controller.timer
+                .setPresetTime(mSec: 21000, add: false);
+            _model.timer1Controller.onResetTimer();
+
+            if (_model.timer1Milliseconds > 20000) {
+              _model.soundPlayer7 ??= AudioPlayer();
+              if (_model.soundPlayer7!.playing) {
+                await _model.soundPlayer7!.stop();
               }
-              _model.soundPlayer5!.setVolume(1.0);
-              _model.soundPlayer5!
+              _model.soundPlayer7!.setVolume(1.0);
+              _model.soundPlayer7!
                   .setAsset('assets/audios/After_20_seconds.mp3')
-                  .then((_) => _model.soundPlayer5!.play());
+                  .then((_) => _model.soundPlayer7!.play());
 
               await actions.tts(
                 widget.country,
@@ -409,37 +398,30 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                   .controller
                   .forward(from: 0.0);
             }
-            _model.soundPlayer6 ??= AudioPlayer();
-            if (_model.soundPlayer6!.playing) {
-              await _model.soundPlayer6!.stop();
+            _model.soundPlayer8 ??= AudioPlayer();
+            if (_model.soundPlayer8!.playing) {
+              await _model.soundPlayer8!.stop();
             }
-            _model.soundPlayer6!.setVolume(1.0);
-            await _model.soundPlayer6!
+            _model.soundPlayer8!.setVolume(1.0);
+            await _model.soundPlayer8!
                 .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                .then((_) => _model.soundPlayer6!.play());
+                .then((_) => _model.soundPlayer8!.play());
 
-            _model.timer1Controller.onStartTimer();
-            _model.timer2Controller.onStartTimer();
             await Future.delayed(const Duration(milliseconds: 1000));
-            while (_model.timer1Milliseconds < 10000) {
-              await actions.tts(
-                widget.country,
-                (String var1) {
-                  return var1[1];
-                }(_model.timer2Value),
-                widget.speed,
-                widget.repCount,
-                widget.voicegender!,
-              );
+            _model.soundPlayer9 ??= AudioPlayer();
+            if (_model.soundPlayer9!.playing) {
+              await _model.soundPlayer9!.stop();
             }
+            _model.soundPlayer9!.setVolume(1.0);
+            await _model.soundPlayer9!
+                .setAsset('assets/audios/female_countdown_timer.mp3')
+                .then((_) => _model.soundPlayer9!.play());
+
+            _model.timer1Controller.timer
+                .setPresetTime(mSec: 11000, add: false);
+            _model.timer1Controller.onResetTimer();
+
             if (_model.timer1Milliseconds > 10000) {
-              _model.timer1Controller.onStopTimer();
-              _model.timer1Controller.timer
-                  .setPresetTime(mSec: 10000, add: false);
-              _model.timer1Controller.onResetTimer();
-
-              _model.timer2Controller.onResetTimer();
-
               await actions.tts(
                 widget.country,
                 'If you want to hear another fact about  the digit, tap the screen within the next ten seconds after this sound',
@@ -447,41 +429,38 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                 widget.repCount,
                 widget.voicegender!,
               );
-              _model.soundPlayer7 ??= AudioPlayer();
-              if (_model.soundPlayer7!.playing) {
-                await _model.soundPlayer7!.stop();
+              _model.soundPlayer10 ??= AudioPlayer();
+              if (_model.soundPlayer10!.playing) {
+                await _model.soundPlayer10!.stop();
               }
-              _model.soundPlayer7!.setVolume(1.0);
-              await _model.soundPlayer7!
+              _model.soundPlayer10!.setVolume(1.0);
+              await _model.soundPlayer10!
                   .setAsset('assets/audios/chime.mp3')
-                  .then((_) => _model.soundPlayer7!.play());
+                  .then((_) => _model.soundPlayer10!.play());
 
-              _model.timer1Controller.onStartTimer();
-              _model.timer2Controller.onStartTimer();
               await Future.delayed(const Duration(milliseconds: 1000));
-              while (_model.timer1Milliseconds < 20000) {
-                await actions.tts(
-                  widget.country,
-                  (String var1) {
-                    return var1[1];
-                  }(_model.timer2Value),
-                  widget.speed,
-                  widget.repCount,
-                  widget.voicegender!,
-                );
+              _model.soundPlayer11 ??= AudioPlayer();
+              if (_model.soundPlayer11!.playing) {
+                await _model.soundPlayer11!.stop();
               }
-              if (_model.timer1Milliseconds > 20000) {
-                _model.timer1Controller.onStopTimer();
-                _model.timer1Controller.onResetTimer();
+              _model.soundPlayer11!.setVolume(1.0);
+              await _model.soundPlayer11!
+                  .setAsset('assets/audios/female_countdown_timer.mp3')
+                  .then((_) => _model.soundPlayer11!.play());
 
-                _model.soundPlayer8 ??= AudioPlayer();
-                if (_model.soundPlayer8!.playing) {
-                  await _model.soundPlayer8!.stop();
+              _model.timer1Controller.timer
+                  .setPresetTime(mSec: 21000, add: false);
+              _model.timer1Controller.onResetTimer();
+
+              if (_model.timer1Milliseconds > 20000) {
+                _model.soundPlayer12 ??= AudioPlayer();
+                if (_model.soundPlayer12!.playing) {
+                  await _model.soundPlayer12!.stop();
                 }
-                _model.soundPlayer8!.setVolume(1.0);
-                _model.soundPlayer8!
+                _model.soundPlayer12!.setVolume(1.0);
+                _model.soundPlayer12!
                     .setAsset('assets/audios/After_20_seconds.mp3')
-                    .then((_) => _model.soundPlayer8!.play());
+                    .then((_) => _model.soundPlayer12!.play());
 
                 await actions.tts(
                   widget.country,
@@ -601,125 +580,196 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
             highlightColor: Colors.transparent,
             onTap: () async {
               if (_model.timer1Milliseconds > 0) {
-                if (_model.timer1Milliseconds < 10000) {
-                  if (_model.result == 'Letter') {
-                    _model.timer1Controller.timer
-                        .setPresetTime(mSec: 10000, add: false);
-                    _model.timer1Controller.onResetTimer();
+                if (_model.result == 'Letter') {
+                  _model.soundPlayer4?.stop();
+                  _model.soundPlayer13 ??= AudioPlayer();
+                  if (_model.soundPlayer13!.playing) {
+                    await _model.soundPlayer13!.stop();
+                  }
+                  _model.soundPlayer13!.setVolume(1.0);
+                  await _model.soundPlayer13!
+                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                      .then((_) => _model.soundPlayer13!.play());
 
-                    _model.timer2Controller.onStopTimer();
-                    _model.soundPlayer9 ??= AudioPlayer();
-                    if (_model.soundPlayer9!.playing) {
-                      await _model.soundPlayer9!.stop();
+                  await actions.tts(
+                    widget.country,
+                    'Good, I will now tell you a short story about the letter you have created',
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  _model.shortstory = await actions.retrieveRandomSentence(
+                    _model.character!,
+                    widget.agegroup!,
+                    widget.country,
+                    'ShortStory',
+                  );
+                  await actions.tts(
+                    widget.country,
+                    _model.shortstory!,
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  await Future.delayed(const Duration(milliseconds: 1000));
+                  await actions.tts(
+                    widget.country,
+                    'If you want to hear a rhyme about the letter you have created,tap the screen within the next ten seconds after this sound',
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  _model.soundPlayer14 ??= AudioPlayer();
+                  if (_model.soundPlayer14!.playing) {
+                    await _model.soundPlayer14!.stop();
+                  }
+                  _model.soundPlayer14!.setVolume(1.0);
+                  _model.soundPlayer14!
+                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                      .then((_) => _model.soundPlayer14!.play());
+
+                  _model.timer1Controller.timer
+                      .setPresetTime(mSec: 11000, add: false);
+                  _model.timer1Controller.onResetTimer();
+
+                  _model.soundPlayer15 ??= AudioPlayer();
+                  if (_model.soundPlayer15!.playing) {
+                    await _model.soundPlayer15!.stop();
+                  }
+                  _model.soundPlayer15!.setVolume(1.0);
+                  await _model.soundPlayer15!
+                      .setAsset('assets/audios/female_countdown_timer.mp3')
+                      .then((_) => _model.soundPlayer15!.play());
+                } else {
+                  _model.soundPlayer9?.stop();
+                  _model.soundPlayer16 ??= AudioPlayer();
+                  if (_model.soundPlayer16!.playing) {
+                    await _model.soundPlayer16!.stop();
+                  }
+                  _model.soundPlayer16!.setVolume(1.0);
+                  await _model.soundPlayer16!
+                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                      .then((_) => _model.soundPlayer16!.play());
+
+                  await actions.tts(
+                    widget.country,
+                    'Good, I will now tell you a fact about the number you have created',
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  _model.fact1 = await actions.numericAction(
+                    _model.character!,
+                    'Fact1',
+                  );
+                  await actions.tts(
+                    widget.country,
+                    _model.fact1!,
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  await Future.delayed(const Duration(milliseconds: 1000));
+                  await actions.tts(
+                    widget.country,
+                    'If you want to hear another fact about the number you have created,tap the screen within the next ten seconds after this sound',
+                    widget.speed,
+                    widget.repCount,
+                    widget.voicegender!,
+                  );
+                  _model.soundPlayer17 ??= AudioPlayer();
+                  if (_model.soundPlayer17!.playing) {
+                    await _model.soundPlayer17!.stop();
+                  }
+                  _model.soundPlayer17!.setVolume(1.0);
+                  _model.soundPlayer17!
+                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                      .then((_) => _model.soundPlayer17!.play());
+
+                  _model.timer1Controller.timer
+                      .setPresetTime(mSec: 11000, add: false);
+                  _model.timer1Controller.onResetTimer();
+
+                  _model.soundPlayer18 ??= AudioPlayer();
+                  if (_model.soundPlayer18!.playing) {
+                    await _model.soundPlayer18!.stop();
+                  }
+                  _model.soundPlayer18!.setVolume(1.0);
+                  await _model.soundPlayer18!
+                      .setAsset('assets/audios/female_countdown_timer.mp3')
+                      .then((_) => _model.soundPlayer18!.play());
+                }
+              } else {
+                if (_model.timer1Milliseconds > 10000) {
+                  if (_model.result == 'Letter') {
+                    _model.soundPlayer15?.stop();
+                    _model.soundPlayer19 ??= AudioPlayer();
+                    if (_model.soundPlayer19!.playing) {
+                      await _model.soundPlayer19!.stop();
                     }
-                    _model.soundPlayer9!.setVolume(1.0);
-                    await _model.soundPlayer9!
+                    _model.soundPlayer19!.setVolume(1.0);
+                    await _model.soundPlayer19!
                         .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                        .then((_) => _model.soundPlayer9!.play());
+                        .then((_) => _model.soundPlayer19!.play());
 
                     await actions.tts(
                       widget.country,
-                      'Good, I will now tell you a short story about the letter you have created',
+                      'Good, I will now tell you a rhyme about the letter you have created',
                       widget.speed,
                       widget.repCount,
                       widget.voicegender!,
                     );
-                    _model.shortstory = await actions.retrieveRandomSentence(
+                    _model.rhyme = await actions.retrieveRandomSentence(
                       _model.character!,
                       widget.agegroup!,
                       widget.country,
-                      'ShortStory',
+                      'Rhyme',
                     );
                     await actions.tts(
                       widget.country,
-                      _model.shortstory!,
+                      _model.rhyme!,
                       widget.speed,
                       widget.repCount,
                       widget.voicegender!,
                     );
                     await Future.delayed(const Duration(milliseconds: 1000));
-                    await actions.tts(
-                      widget.country,
-                      'If you want to hear a rhyme about the letter you have created,tap the screen within the next ten seconds after this sound',
-                      widget.speed,
-                      widget.repCount,
-                      widget.voicegender!,
-                    );
-                    _model.timer2Controller.onResetTimer();
-
-                    _model.timer1Controller.onStartTimer();
-                  } else {
                     _model.timer1Controller.timer
-                        .setPresetTime(mSec: 10000, add: false);
+                        .setPresetTime(mSec: 21000, add: false);
                     _model.timer1Controller.onResetTimer();
-
-                    _model.timer2Controller.onStopTimer();
-                    _model.soundPlayer10 ??= AudioPlayer();
-                    if (_model.soundPlayer10!.playing) {
-                      await _model.soundPlayer10!.stop();
+                  } else {
+                    _model.soundPlayer18?.stop();
+                    _model.soundPlayer20 ??= AudioPlayer();
+                    if (_model.soundPlayer20!.playing) {
+                      await _model.soundPlayer20!.stop();
                     }
-                    _model.soundPlayer10!.setVolume(1.0);
-                    await _model.soundPlayer10!
+                    _model.soundPlayer20!.setVolume(1.0);
+                    await _model.soundPlayer20!
                         .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                        .then((_) => _model.soundPlayer10!.play());
+                        .then((_) => _model.soundPlayer20!.play());
 
                     await actions.tts(
                       widget.country,
-                      'Good, I will now tell you a fact about the number you have created',
+                      'Good, I will now tell you another fact about the number you have created',
                       widget.speed,
                       widget.repCount,
                       widget.voicegender!,
                     );
-                    _model.fact1 = await actions.numericAction(
+                    _model.fact2 = await actions.numericAction(
                       _model.character!,
-                      'Fact1',
+                      'Fact2',
                     );
                     await actions.tts(
                       widget.country,
-                      _model.fact1!,
+                      _model.fact2!,
                       widget.speed,
                       widget.repCount,
                       widget.voicegender!,
                     );
                     await Future.delayed(const Duration(milliseconds: 1000));
-                    await actions.tts(
-                      widget.country,
-                      'If you want to hear another fact about the number you have created,tap the screen within the next ten seconds after this sound',
-                      widget.speed,
-                      widget.repCount,
-                      widget.voicegender!,
-                    );
-                    _model.timer2Controller.onResetTimer();
-
-                    _model.timer1Controller.onStartTimer();
+                    _model.timer1Controller.timer
+                        .setPresetTime(mSec: 21000, add: false);
+                    _model.timer1Controller.onResetTimer();
                   }
-
-                  _model.soundPlayer11 ??= AudioPlayer();
-                  if (_model.soundPlayer11!.playing) {
-                    await _model.soundPlayer11!.stop();
-                  }
-                  _model.soundPlayer11!.setVolume(1.0);
-                  await _model.soundPlayer11!
-                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                      .then((_) => _model.soundPlayer11!.play());
-
-                  await Future.delayed(const Duration(milliseconds: 1000));
-                  _model.timer1Controller.onStartTimer();
-                  _model.timer2Controller.onStartTimer();
-                  while (_model.timer1Milliseconds < 20000) {
-                    await actions.tts(
-                      widget.country,
-                      (String var1) {
-                        return var1[1];
-                      }(_model.timer2Value),
-                      widget.speed,
-                      widget.repCount,
-                      widget.voicegender!,
-                    );
-                  }
-                  _model.timer1Controller.onResetTimer();
-
-                  _model.timer2Controller.onResetTimer();
 
                   await actions.tts(
                     widget.country,
@@ -754,118 +804,6 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                       ),
                     }.withoutNulls,
                   );
-                } else {
-                  if (_model.timer1Milliseconds <= 20000) {
-                    if (_model.result == 'Letter') {
-                      _model.timer1Controller.timer
-                          .setPresetTime(mSec: 20000, add: false);
-                      _model.timer1Controller.onResetTimer();
-
-                      _model.timer2Controller.onStopTimer();
-                      _model.soundPlayer12 ??= AudioPlayer();
-                      if (_model.soundPlayer12!.playing) {
-                        await _model.soundPlayer12!.stop();
-                      }
-                      _model.soundPlayer12!.setVolume(1.0);
-                      await _model.soundPlayer12!
-                          .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                          .then((_) => _model.soundPlayer12!.play());
-
-                      await actions.tts(
-                        widget.country,
-                        'Good, I will now tell you a rhyme about the letter you have created',
-                        widget.speed,
-                        widget.repCount,
-                        widget.voicegender!,
-                      );
-                      _model.rhyme = await actions.retrieveRandomSentence(
-                        _model.character!,
-                        widget.agegroup!,
-                        widget.country,
-                        'Rhyme',
-                      );
-                      await actions.tts(
-                        widget.country,
-                        _model.rhyme!,
-                        widget.speed,
-                        widget.repCount,
-                        widget.voicegender!,
-                      );
-                      _model.timer2Controller.onResetTimer();
-
-                      _model.timer1Controller.onStartTimer();
-                    } else {
-                      _model.timer1Controller.timer
-                          .setPresetTime(mSec: 20000, add: false);
-                      _model.timer1Controller.onResetTimer();
-
-                      _model.timer2Controller.onStopTimer();
-                      _model.soundPlayer13 ??= AudioPlayer();
-                      if (_model.soundPlayer13!.playing) {
-                        await _model.soundPlayer13!.stop();
-                      }
-                      _model.soundPlayer13!.setVolume(1.0);
-                      await _model.soundPlayer13!
-                          .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                          .then((_) => _model.soundPlayer13!.play());
-
-                      await actions.tts(
-                        widget.country,
-                        'Good, I will now tell you another fact about the number you have created',
-                        widget.speed,
-                        widget.repCount,
-                        widget.voicegender!,
-                      );
-                      _model.fact2 = await actions.numericAction(
-                        _model.character!,
-                        'Fact2',
-                      );
-                      await actions.tts(
-                        widget.country,
-                        _model.fact2!,
-                        widget.speed,
-                        widget.repCount,
-                        widget.voicegender!,
-                      );
-                      _model.timer2Controller.onResetTimer();
-
-                      _model.timer1Controller.onStartTimer();
-                    }
-
-                    await actions.tts(
-                      widget.country,
-                      'Happy to help you, I will wait for your next query',
-                      widget.speed,
-                      widget.repCount,
-                      widget.voicegender!,
-                    );
-
-                    context.pushNamed(
-                      'Welcome',
-                      queryParameters: {
-                        'country': serializeParam(
-                          widget.country,
-                          ParamType.String,
-                        ),
-                        'voicegender': serializeParam(
-                          widget.voicegender,
-                          ParamType.int,
-                        ),
-                        'agegroup': serializeParam(
-                          widget.agegroup,
-                          ParamType.String,
-                        ),
-                        'repCount': serializeParam(
-                          widget.repCount,
-                          ParamType.int,
-                        ),
-                        'speed': serializeParam(
-                          widget.speed,
-                          ParamType.double,
-                        ),
-                      }.withoutNulls,
-                    );
-                  }
                 }
               }
 

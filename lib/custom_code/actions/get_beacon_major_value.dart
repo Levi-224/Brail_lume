@@ -56,7 +56,7 @@ Future<String> getBeaconMajorValue() async {
         });
       }
     });
-    await Future.delayed(Duration(seconds: 15));
+    await Future.delayed(Duration(seconds: 8));
     FlutterBluePlus.stopScan();
   }
   // Add a print statement to indicate the function has completed
