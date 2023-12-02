@@ -499,39 +499,41 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
             }
           }
         } else {
-          await actions.tts(
-            widget.country,
-            'You have created a special symbol using BraillumeThe symbol you have created is${_model.character}',
-            widget.speed,
-            widget.repCount,
-            widget.voicegender!,
-          );
+          if (_model.result == '\'Special character\'') {
+            await actions.tts(
+              widget.country,
+              'You have created a special symbol using BraillumeThe symbol you have created is${_model.character}',
+              widget.speed,
+              widget.repCount,
+              widget.voicegender!,
+            );
 
-          context.pushNamed(
-            'Welcome',
-            queryParameters: {
-              'country': serializeParam(
-                '',
-                ParamType.String,
-              ),
-              'voicegender': serializeParam(
-                0,
-                ParamType.int,
-              ),
-              'agegroup': serializeParam(
-                '',
-                ParamType.String,
-              ),
-              'repCount': serializeParam(
-                0,
-                ParamType.int,
-              ),
-              'speed': serializeParam(
-                0.0,
-                ParamType.double,
-              ),
-            }.withoutNulls,
-          );
+            context.pushNamed(
+              'Welcome',
+              queryParameters: {
+                'country': serializeParam(
+                  '',
+                  ParamType.String,
+                ),
+                'voicegender': serializeParam(
+                  0,
+                  ParamType.int,
+                ),
+                'agegroup': serializeParam(
+                  '',
+                  ParamType.String,
+                ),
+                'repCount': serializeParam(
+                  0,
+                  ParamType.int,
+                ),
+                'speed': serializeParam(
+                  0.0,
+                  ParamType.double,
+                ),
+              }.withoutNulls,
+            );
+          }
         }
       }
     });
@@ -580,137 +582,17 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
             highlightColor: Colors.transparent,
             onTap: () async {
               if (_model.timer1Milliseconds > 0) {
-                if (_model.result == 'Letter') {
-                  _model.soundPlayer4?.stop();
-                  _model.soundPlayer13 ??= AudioPlayer();
-                  if (_model.soundPlayer13!.playing) {
-                    await _model.soundPlayer13!.stop();
-                  }
-                  _model.soundPlayer13!.setVolume(1.0);
-                  await _model.soundPlayer13!
-                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                      .then((_) => _model.soundPlayer13!.play());
-
-                  await actions.tts(
-                    widget.country,
-                    'Good, I will now tell you a short story about the letter you have created',
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  _model.shortstory = await actions.retrieveRandomSentence(
-                    _model.character!,
-                    widget.agegroup!,
-                    widget.country,
-                    'ShortStory',
-                  );
-                  await actions.tts(
-                    widget.country,
-                    _model.shortstory!,
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  await Future.delayed(const Duration(milliseconds: 1000));
-                  await actions.tts(
-                    widget.country,
-                    'If you want to hear a rhyme about the letter you have created,tap the screen within the next ten seconds after this sound',
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  _model.soundPlayer14 ??= AudioPlayer();
-                  if (_model.soundPlayer14!.playing) {
-                    await _model.soundPlayer14!.stop();
-                  }
-                  _model.soundPlayer14!.setVolume(1.0);
-                  _model.soundPlayer14!
-                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                      .then((_) => _model.soundPlayer14!.play());
-
-                  _model.timer1Controller.timer
-                      .setPresetTime(mSec: 11000, add: false);
-                  _model.timer1Controller.onResetTimer();
-
-                  _model.soundPlayer15 ??= AudioPlayer();
-                  if (_model.soundPlayer15!.playing) {
-                    await _model.soundPlayer15!.stop();
-                  }
-                  _model.soundPlayer15!.setVolume(1.0);
-                  await _model.soundPlayer15!
-                      .setAsset('assets/audios/female_countdown_timer.mp3')
-                      .then((_) => _model.soundPlayer15!.play());
-                } else {
-                  _model.soundPlayer9?.stop();
-                  _model.soundPlayer16 ??= AudioPlayer();
-                  if (_model.soundPlayer16!.playing) {
-                    await _model.soundPlayer16!.stop();
-                  }
-                  _model.soundPlayer16!.setVolume(1.0);
-                  await _model.soundPlayer16!
-                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                      .then((_) => _model.soundPlayer16!.play());
-
-                  await actions.tts(
-                    widget.country,
-                    'Good, I will now tell you a fact about the number you have created',
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  _model.fact1 = await actions.numericAction(
-                    _model.character!,
-                    'Fact1',
-                  );
-                  await actions.tts(
-                    widget.country,
-                    _model.fact1!,
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  await Future.delayed(const Duration(milliseconds: 1000));
-                  await actions.tts(
-                    widget.country,
-                    'If you want to hear another fact about the number you have created,tap the screen within the next ten seconds after this sound',
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-                  _model.soundPlayer17 ??= AudioPlayer();
-                  if (_model.soundPlayer17!.playing) {
-                    await _model.soundPlayer17!.stop();
-                  }
-                  _model.soundPlayer17!.setVolume(1.0);
-                  _model.soundPlayer17!
-                      .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                      .then((_) => _model.soundPlayer17!.play());
-
-                  _model.timer1Controller.timer
-                      .setPresetTime(mSec: 11000, add: false);
-                  _model.timer1Controller.onResetTimer();
-
-                  _model.soundPlayer18 ??= AudioPlayer();
-                  if (_model.soundPlayer18!.playing) {
-                    await _model.soundPlayer18!.stop();
-                  }
-                  _model.soundPlayer18!.setVolume(1.0);
-                  await _model.soundPlayer18!
-                      .setAsset('assets/audios/female_countdown_timer.mp3')
-                      .then((_) => _model.soundPlayer18!.play());
-                }
-              } else {
                 if (_model.timer1Milliseconds > 10000) {
                   if (_model.result == 'Letter') {
-                    _model.soundPlayer15?.stop();
-                    _model.soundPlayer19 ??= AudioPlayer();
-                    if (_model.soundPlayer19!.playing) {
-                      await _model.soundPlayer19!.stop();
+                    _model.soundPlayer17?.stop();
+                    _model.soundPlayer13 ??= AudioPlayer();
+                    if (_model.soundPlayer13!.playing) {
+                      await _model.soundPlayer13!.stop();
                     }
-                    _model.soundPlayer19!.setVolume(1.0);
-                    await _model.soundPlayer19!
+                    _model.soundPlayer13!.setVolume(1.0);
+                    await _model.soundPlayer13!
                         .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                        .then((_) => _model.soundPlayer19!.play());
+                        .then((_) => _model.soundPlayer13!.play());
 
                     await actions.tts(
                       widget.country,
@@ -736,16 +618,52 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                     _model.timer1Controller.timer
                         .setPresetTime(mSec: 21000, add: false);
                     _model.timer1Controller.onResetTimer();
-                  } else {
-                    _model.soundPlayer18?.stop();
-                    _model.soundPlayer20 ??= AudioPlayer();
-                    if (_model.soundPlayer20!.playing) {
-                      await _model.soundPlayer20!.stop();
+
+                    if (_model.timer1Milliseconds > 20000) {
+                      await actions.tts(
+                        widget.country,
+                        'Happy to help you, I will wait for your next query',
+                        widget.speed,
+                        widget.repCount,
+                        widget.voicegender!,
+                      );
+
+                      context.pushNamed(
+                        'Welcome',
+                        queryParameters: {
+                          'country': serializeParam(
+                            widget.country,
+                            ParamType.String,
+                          ),
+                          'voicegender': serializeParam(
+                            widget.voicegender,
+                            ParamType.int,
+                          ),
+                          'agegroup': serializeParam(
+                            widget.agegroup,
+                            ParamType.String,
+                          ),
+                          'repCount': serializeParam(
+                            widget.repCount,
+                            ParamType.int,
+                          ),
+                          'speed': serializeParam(
+                            widget.speed,
+                            ParamType.double,
+                          ),
+                        }.withoutNulls,
+                      );
                     }
-                    _model.soundPlayer20!.setVolume(1.0);
-                    await _model.soundPlayer20!
+                  } else {
+                    _model.soundPlayer20?.stop();
+                    _model.soundPlayer14 ??= AudioPlayer();
+                    if (_model.soundPlayer14!.playing) {
+                      await _model.soundPlayer14!.stop();
+                    }
+                    _model.soundPlayer14!.setVolume(1.0);
+                    await _model.soundPlayer14!
                         .setAsset('assets/audios/Short_story_&_rhyme.mp3')
-                        .then((_) => _model.soundPlayer20!.play());
+                        .then((_) => _model.soundPlayer14!.play());
 
                     await actions.tts(
                       widget.country,
@@ -769,41 +687,243 @@ class _WelcomeWidgetState extends State<WelcomeWidget>
                     _model.timer1Controller.timer
                         .setPresetTime(mSec: 21000, add: false);
                     _model.timer1Controller.onResetTimer();
-                  }
 
-                  await actions.tts(
-                    widget.country,
-                    'Happy to help you, I will wait for your next query',
-                    widget.speed,
-                    widget.repCount,
-                    widget.voicegender!,
-                  );
-
-                  context.pushNamed(
-                    'Welcome',
-                    queryParameters: {
-                      'country': serializeParam(
+                    if (_model.timer1Milliseconds > 20000) {
+                      await actions.tts(
                         widget.country,
-                        ParamType.String,
-                      ),
-                      'voicegender': serializeParam(
-                        widget.voicegender,
-                        ParamType.int,
-                      ),
-                      'agegroup': serializeParam(
-                        widget.agegroup,
-                        ParamType.String,
-                      ),
-                      'repCount': serializeParam(
-                        widget.repCount,
-                        ParamType.int,
-                      ),
-                      'speed': serializeParam(
+                        'Happy to help you, I will wait for your next query',
                         widget.speed,
-                        ParamType.double,
-                      ),
-                    }.withoutNulls,
-                  );
+                        widget.repCount,
+                        widget.voicegender!,
+                      );
+
+                      context.pushNamed(
+                        'Welcome',
+                        queryParameters: {
+                          'country': serializeParam(
+                            widget.country,
+                            ParamType.String,
+                          ),
+                          'voicegender': serializeParam(
+                            widget.voicegender,
+                            ParamType.int,
+                          ),
+                          'agegroup': serializeParam(
+                            widget.agegroup,
+                            ParamType.String,
+                          ),
+                          'repCount': serializeParam(
+                            widget.repCount,
+                            ParamType.int,
+                          ),
+                          'speed': serializeParam(
+                            widget.speed,
+                            ParamType.double,
+                          ),
+                        }.withoutNulls,
+                      );
+                    }
+                  }
+                } else {
+                  if (_model.result == 'Letter') {
+                    _model.soundPlayer4?.stop();
+                    _model.soundPlayer15 ??= AudioPlayer();
+                    if (_model.soundPlayer15!.playing) {
+                      await _model.soundPlayer15!.stop();
+                    }
+                    _model.soundPlayer15!.setVolume(1.0);
+                    await _model.soundPlayer15!
+                        .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                        .then((_) => _model.soundPlayer15!.play());
+
+                    await actions.tts(
+                      widget.country,
+                      'Good, I will now tell you a short story about the letter you have created',
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    _model.shortstory = await actions.retrieveRandomSentence(
+                      _model.character!,
+                      widget.agegroup!,
+                      widget.country,
+                      'ShortStory',
+                    );
+                    await actions.tts(
+                      widget.country,
+                      _model.shortstory!,
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    await Future.delayed(const Duration(milliseconds: 1000));
+                    await actions.tts(
+                      widget.country,
+                      'If you want to hear a rhyme about the letter you have created,tap the screen within the next ten seconds after this sound',
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    _model.soundPlayer16 ??= AudioPlayer();
+                    if (_model.soundPlayer16!.playing) {
+                      await _model.soundPlayer16!.stop();
+                    }
+                    _model.soundPlayer16!.setVolume(1.0);
+                    _model.soundPlayer16!
+                        .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                        .then((_) => _model.soundPlayer16!.play());
+
+                    _model.timer1Controller.timer
+                        .setPresetTime(mSec: 11000, add: false);
+                    _model.timer1Controller.onResetTimer();
+
+                    _model.soundPlayer17 ??= AudioPlayer();
+                    if (_model.soundPlayer17!.playing) {
+                      await _model.soundPlayer17!.stop();
+                    }
+                    _model.soundPlayer17!.setVolume(1.0);
+                    await _model.soundPlayer17!
+                        .setAsset('assets/audios/female_countdown_timer.mp3')
+                        .then((_) => _model.soundPlayer17!.play());
+
+                    _model.timer1Controller.timer
+                        .setPresetTime(mSec: 21000, add: false);
+                    _model.timer1Controller.onResetTimer();
+
+                    if (_model.timer1Milliseconds > 20000) {
+                      await actions.tts(
+                        widget.country,
+                        'Happy to help you, I will wait for your next query',
+                        widget.speed,
+                        widget.repCount,
+                        widget.voicegender!,
+                      );
+
+                      context.pushNamed(
+                        'Welcome',
+                        queryParameters: {
+                          'country': serializeParam(
+                            widget.country,
+                            ParamType.String,
+                          ),
+                          'voicegender': serializeParam(
+                            widget.voicegender,
+                            ParamType.int,
+                          ),
+                          'agegroup': serializeParam(
+                            widget.agegroup,
+                            ParamType.String,
+                          ),
+                          'repCount': serializeParam(
+                            widget.repCount,
+                            ParamType.int,
+                          ),
+                          'speed': serializeParam(
+                            widget.speed,
+                            ParamType.double,
+                          ),
+                        }.withoutNulls,
+                      );
+                    }
+                  } else {
+                    _model.soundPlayer9?.stop();
+                    _model.soundPlayer18 ??= AudioPlayer();
+                    if (_model.soundPlayer18!.playing) {
+                      await _model.soundPlayer18!.stop();
+                    }
+                    _model.soundPlayer18!.setVolume(1.0);
+                    await _model.soundPlayer18!
+                        .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                        .then((_) => _model.soundPlayer18!.play());
+
+                    await actions.tts(
+                      widget.country,
+                      'Good, I will now tell you a fact about the number you have created',
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    _model.fact1 = await actions.numericAction(
+                      _model.character!,
+                      'Fact1',
+                    );
+                    await actions.tts(
+                      widget.country,
+                      _model.fact1!,
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    await Future.delayed(const Duration(milliseconds: 1000));
+                    await actions.tts(
+                      widget.country,
+                      'If you want to hear another fact about the number you have created,tap the screen within the next ten seconds after this sound',
+                      widget.speed,
+                      widget.repCount,
+                      widget.voicegender!,
+                    );
+                    _model.soundPlayer19 ??= AudioPlayer();
+                    if (_model.soundPlayer19!.playing) {
+                      await _model.soundPlayer19!.stop();
+                    }
+                    _model.soundPlayer19!.setVolume(1.0);
+                    _model.soundPlayer19!
+                        .setAsset('assets/audios/Short_story_&_rhyme.mp3')
+                        .then((_) => _model.soundPlayer19!.play());
+
+                    _model.timer1Controller.timer
+                        .setPresetTime(mSec: 11000, add: false);
+                    _model.timer1Controller.onResetTimer();
+
+                    _model.soundPlayer20 ??= AudioPlayer();
+                    if (_model.soundPlayer20!.playing) {
+                      await _model.soundPlayer20!.stop();
+                    }
+                    _model.soundPlayer20!.setVolume(1.0);
+                    await _model.soundPlayer20!
+                        .setAsset('assets/audios/female_countdown_timer.mp3')
+                        .then((_) => _model.soundPlayer20!.play());
+
+                    _model.timer1Controller.timer
+                        .setPresetTime(mSec: 21000, add: false);
+                    _model.timer1Controller.onResetTimer();
+
+                    if (_model.timer1Milliseconds > 20000) {
+                      await actions.tts(
+                        widget.country,
+                        'Happy to help you, I will wait for your next query',
+                        widget.speed,
+                        widget.repCount,
+                        widget.voicegender!,
+                      );
+
+                      context.pushNamed(
+                        'Welcome',
+                        queryParameters: {
+                          'country': serializeParam(
+                            widget.country,
+                            ParamType.String,
+                          ),
+                          'voicegender': serializeParam(
+                            widget.voicegender,
+                            ParamType.int,
+                          ),
+                          'agegroup': serializeParam(
+                            widget.agegroup,
+                            ParamType.String,
+                          ),
+                          'repCount': serializeParam(
+                            widget.repCount,
+                            ParamType.int,
+                          ),
+                          'speed': serializeParam(
+                            widget.speed,
+                            ParamType.double,
+                          ),
+                        }.withoutNulls,
+                      );
+                    }
+                  }
                 }
               }
 
